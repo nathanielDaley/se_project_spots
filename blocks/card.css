@@ -1,0 +1,36 @@
+.card {
+  width: 413px;
+  margin: 0;
+}
+
+.card__image {
+  width: 413px;
+  height: 413px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.card__content {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0 0;
+}
+
+.card__title {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.card__like-btn {
+  background-image: url(../images/heart-icon.svg);
+  width: 23px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  opacity: 0.4;
+}
