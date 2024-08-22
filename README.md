@@ -1,21 +1,33 @@
 # Project 3: Spots
 
-### Overview  
+### Overview
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+This is the second project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the design brief.
+https://nathanieldaley.github.io/se_project_spots/
+
+**Figma**
+
+- [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
+
+**Images**
+
+1. Photo by Kassandre Pedro from Pexels: https://www.pexels.com/photo/snow-covered-mountain-view-through-the-window-8639743/
+2. Photo by Céline from Pexels: https://www.pexels.com/photo/a-restaurant-with-a-white-awning-and-green-awning-16177539/
+3. Photo by Tuba Nur Dogan from Pexels: https://www.pexels.com/photo/people-dining-in-front-of-a-restaurant-18964272/
+4. Photo by Maurice Laschet from Pexels: https://www.pexels.com/photo/suspension-bridge-in-a-forest-18882456/
+5. Photo by Van Anh Nguyen from Pexels: https://www.pexels.com/photo/interior-of-empty-corridor-18981695/
+6. Photo by Moritz Feldmann from Pexels: https://www.pexels.com/photo/rustic-shack-in-winter-18812772/
+
+## Project features
+
+- Semantic HTML5
+- Flexbox
+- Positioning
+- Flat BEM file structure
+- Media Queries
+- CSS Grid
+
+## Plan on improving the project
+
+- Implement Edit Profile, New Post, and Like buttons
+- Add more media queries
