@@ -2,7 +2,7 @@
 
 ### Overview
 
-This is the second project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the design brief.
+This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the design brief.
 https://nathanieldaley.github.io/se_project_spots/
 
 **Figma**
