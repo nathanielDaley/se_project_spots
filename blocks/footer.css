@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__copyright {
+  font-weight: 400;
+  color: rgba(33, 33, 33, 0.7);
+  margin: 0;
+  padding: 60px 0;
+}
