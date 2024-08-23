@@ -1,6 +1,7 @@
 .page {
   background-color: #fcf5e5;
   font-family: Poppins, Arial, sans-serif;
+  height: 100vh;
 }
 
 .page__section {
