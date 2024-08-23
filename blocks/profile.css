@@ -65,6 +65,14 @@
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
+  transition: opacity 0.2s linear;
+  max-width: 110px;
+}
+
+.profile__edit-btn:hover {
+  opacity: 1;
+  transition: opacity 0.2s linear;
+  cursor: pointer;
 }
 
 .profile__add-btn {
@@ -85,6 +93,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  transition: box-shadow 0.3s linear;
+}
+
+.profile__add-btn:hover {
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s linear;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
