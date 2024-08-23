@@ -1,6 +1,8 @@
 .page {
   background-color: #fcf5e5;
   font-family: Poppins, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
