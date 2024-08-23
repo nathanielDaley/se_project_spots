@@ -9,7 +9,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 413px);
+  grid-template-columns: repeat(auto-fit, minmax(413px, 1fr));
   gap: 40px 20px;
   justify-content: center;
 }
