@@ -109,6 +109,7 @@
     align-items: center;
     text-align: center;
     padding-top: 20px;
+    justify-content: center;
   }
 
   .profile__avatar {
@@ -132,7 +133,7 @@
   }
 
   .profile__edit-btn {
-    justify-content: center;
+    margin: 0 auto;
   }
 
   .profile__add-btn {
