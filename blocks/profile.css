@@ -118,17 +118,17 @@
   }
 
   .profile__column {
-    padding-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   .profile__name {
     font-size: 20px;
     line-height: 20px;
-    padding-bottom: 6px;
+    margin-bottom: 6px;
   }
 
   .profile__description {
-    padding-bottom: 32px;
+    margin-bottom: 32px;
   }
 
   .profile__edit-btn {
