@@ -44,13 +44,13 @@ const editProfileModalDescriptionInput = editProfileModal.querySelector(
 );
 
 //Card template
-const cardTemplate = document.querySelector("#card").content;
+const cardTemplate = document.querySelector("#card");
 
 //Cards container
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  let cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
   let cardTitle = cardElement.querySelector(".card__title");
   let cardImage = cardElement.querySelector(".card__image");
 
@@ -86,6 +86,7 @@ editProfileButton.addEventListener("click", openEditProfileModal);
 closeEditProfileModalButton.addEventListener("click", closeEditProfileModal);
 editProfileModalForm.addEventListener("submit", saveProfile);
 
+//Generate cards for cards list
 for (let card of initialCards) {
   cardsList.append(getCardElement(card));
 }
