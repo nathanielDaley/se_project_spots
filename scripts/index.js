@@ -24,3 +24,19 @@ const initialCards = [
     link: "./images/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
+const editProfileButton = document.querySelector(".profile__edit-btn");
+const editProfileModal = document.querySelector("#edit-profile-modal");
+const closeEditProfileModalButton =
+  editProfileModal.querySelector(".modal__close-btn");
+
+function openEditProfileModal() {
+  editProfileModal.classList.add("modal_opened");
+}
+
+function closeEditProfileModal() {
+  editProfileModal.classList.remove("modal_opened");
+}
+
+editProfileButton.addEventListener("click", openEditProfileModal);
+closeEditProfileModalButton.addEventListener("click", closeEditProfileModal);
