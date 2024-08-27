@@ -67,6 +67,7 @@ function openEditProfileModal() {
   editProfileModalNameInput.value = profileNameLabel.textContent;
   editProfileModalDescriptionInput.value =
     profileDescriptionParagraph.textContent;
+
   editProfileModal.classList.add("modal_opened");
 }
 
