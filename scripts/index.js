@@ -33,6 +33,7 @@ const profileDescriptionParagraph = document.querySelector(
 
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
+const editProfileModalForm = editProfileModal.querySelector(".modal__form");
 const closeEditProfileModalButton =
   editProfileModal.querySelector(".modal__close-btn");
 const editProfileModalNameInput =
@@ -40,6 +41,8 @@ const editProfileModalNameInput =
 const editProfileModalDescriptionInput = editProfileModal.querySelector(
   ".modal__input#description"
 );
+
+const cardTemplate = document.querySelector("#card");
 
 function openEditProfileModal() {
   editProfileModalNameInput.value = profileNameLabel.textContent;
@@ -64,4 +67,4 @@ function saveProfile(evt) {
 
 editProfileButton.addEventListener("click", openEditProfileModal);
 closeEditProfileModalButton.addEventListener("click", closeEditProfileModal);
-editProfileModal.addEventListener("submit", saveProfile);
+editProfileModalForm.addEventListener("submit", saveProfile);
