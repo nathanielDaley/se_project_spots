@@ -30,8 +30,10 @@ https://nathanieldaley.github.io/se_project_spots/
 - Flat BEM file structure
 - Media Queries
 - CSS Grid
+- Javascript
 
 ## Plan on improving the project
 
-- Implement Edit Profile, New Post, and Like buttons
+- Implement New Post, and Like buttons
+- Show a larger version of an image when an image is clicked
 - Add more media queries
