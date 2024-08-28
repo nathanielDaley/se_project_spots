@@ -34,7 +34,7 @@ const profileDescriptionParagraph = document.querySelector(
 
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileModalForm = editProfileModal.querySelector(".modal__form");
+const editProfileModalForm = document.forms["edit-profile-form"];
 const closeEditProfileModalButton =
   editProfileModal.querySelector(".modal__close-btn");
 const editProfileModalNameInput =
