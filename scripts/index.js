@@ -90,6 +90,7 @@ closeEditProfileModalButton.addEventListener("click", closeEditProfileModal);
 editProfileModalForm.addEventListener("submit", saveProfile);
 
 //Generate cards for cards list
-for (let card of initialCards) {
-  cardsList.append(getCardElement(card));
-}
+initialCards.forEach((card) => {
+  const cardElement = getCardElement(card);
+  cardsList.append(cardElement);
+});
