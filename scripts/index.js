@@ -62,17 +62,22 @@ const cardTemplate = document.querySelector("#card");
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
+  //Create a new card by cloning the template card
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
+
+  //Get the new cards elements
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
   const cardLikeButton = cardElement.querySelector(".card__like-btn");
 
+  //Set the new cards elements from the data passed into the function
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
 
+  //Make the like button state change when clicked
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__like-btn_liked");
   });
