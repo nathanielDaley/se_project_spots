@@ -136,8 +136,7 @@ function handleNewPostSubmit(evt) {
 
   cardsList.prepend(cardElement);
 
-  newPostModalCaptionInput.value = "";
-  newPostModalImageLinkInput.value = "";
+  evt.target.reset();
 
   closeModal(newPostModal);
 }
