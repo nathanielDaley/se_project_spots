@@ -136,6 +136,9 @@ function handleNewPostSubmit(evt) {
 
   cardsList.prepend(cardElement);
 
+  newPostModalCaptionInput.value = "";
+  newPostModalImageLinkInput.value = "";
+
   closeModal(newPostModal);
 }
 
@@ -154,9 +157,6 @@ editProfileModalForm.addEventListener("submit", handleEditProfileSubmit);
 
 // New Post Modal event listeners
 newPostButton.addEventListener("click", () => {
-  newPostModalCaptionInput.value = "";
-  newPostModalImageLinkInput.value = "";
-
   openModal(newPostModal);
 });
 closeNewPostModalButton.addEventListener("click", () =>
