@@ -1,3 +1,28 @@
+.card {
+  position: relative;
+}
+
+.card__delete-btn {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px;
+  right: 10px;
+  transition: background-color linear 0.2s;
+}
+
+.card__delete-btn:hover {
+  background-color: rgba(255, 101, 101, 1);
+  transition: background-color linear 0.2s;
+  cursor: pointer;
+}
+
 .card__image {
   height: 413px;
   width: 100%;
