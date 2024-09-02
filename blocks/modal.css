@@ -155,9 +155,11 @@
 
   .modal__container_type_preview {
     padding: 0;
-    max-width: 80vw;
-    max-height: 80vh;
-    width: auto;
+    max-width: 97vw;
+  }
+
+  .modal__image {
+    max-width: 97vw;
   }
 
   .modal__title {
