@@ -37,7 +37,7 @@
 .modal__image {
   max-width: 80vw;
   max-height: 80vh;
-  height: auto;
+  height: 100%;
   border-radius: 8px;
 }
 
@@ -149,6 +149,13 @@
     padding: 22px 12px 12px;
   }
 
+  .modal__container_type_preview {
+    padding: 0;
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+  }
+
   .modal__title {
     margin: 0 0 34px;
     font-size: 20px;
@@ -158,6 +165,17 @@
   .modal__close-btn {
     top: 12px;
     right: 12px;
+  }
+
+  .modal__close-btn_type_preview {
+    background-image: url(../images/plus-light.svg);
+    top: -48px;
+    right: 0;
+    opacity: 1;
+  }
+
+  .modal__close-btn_type_preview:hover {
+    opacity: 0.4;
   }
 
   .modal__label {
