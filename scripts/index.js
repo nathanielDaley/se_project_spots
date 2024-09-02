@@ -40,8 +40,6 @@ const profileDescriptionParagraph = document.querySelector(
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileModalForm = document.forms["edit-profile-form"];
-const closeEditProfileModalButton =
-  editProfileModal.querySelector(".modal__close-btn");
 const editProfileModalNameInput =
   editProfileModal.querySelector(".modal__input#name");
 const editProfileModalDescriptionInput = editProfileModal.querySelector(
@@ -51,7 +49,6 @@ const editProfileModalDescriptionInput = editProfileModal.querySelector(
 //New Post Modal & Elements
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostModalForm = document.forms["new-post-form"];
-const closeNewPostModalButton = newPostModal.querySelector(".modal__close-btn");
 const newPostModalImageLinkInput = newPostModal.querySelector(
   ".modal__input#image-link"
 );
@@ -61,9 +58,11 @@ const newPostModalCaptionInput = newPostModal.querySelector(
 
 //Image Modal & Elements
 const imageModal = document.querySelector("#preview-modal");
-const closeImageModalButton = imageModal.querySelector(".modal__close-btn");
 const imageModalImage = imageModal.querySelector(".modal__image");
 const imageModalCaption = imageModal.querySelector(".modal__caption");
+
+//All close modal buttons
+const closeModalButtons = document.querySelectorAll(".modal__close-btn");
 
 //Card template
 const cardTemplate = document.querySelector("#card");
@@ -71,6 +70,14 @@ const cardTemplate = document.querySelector("#card");
 //Cards container
 const cardsList = document.querySelector(".cards__list");
 
+//Code that runs when the web page was loaded
+//Generate cards for cards list
+initialCards.forEach((card) => {
+  const cardElement = getCardElement(card);
+  cardsList.append(cardElement);
+});
+
+//Predifined functions
 function getCardElement(data) {
   //Create a new card by cloning the template card
   const cardElement = cardTemplate.content
@@ -141,6 +148,7 @@ function handleNewPostSubmit(evt) {
   closeModal(newPostModal);
 }
 
+//Event listeners
 //Edit Profile Modal event listeners
 editProfileButton.addEventListener("click", () => {
   editProfileModalNameInput.value = profileNameLabel.textContent;
@@ -149,25 +157,18 @@ editProfileButton.addEventListener("click", () => {
 
   openModal(editProfileModal);
 });
-closeEditProfileModalButton.addEventListener("click", () =>
-  closeModal(editProfileModal)
-);
 editProfileModalForm.addEventListener("submit", handleEditProfileSubmit);
 
 // New Post Modal event listeners
 newPostButton.addEventListener("click", () => {
   openModal(newPostModal);
 });
-closeNewPostModalButton.addEventListener("click", () =>
-  closeModal(newPostModal)
-);
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
 
-//Image Modal event listener
-closeImageModalButton.addEventListener("click", () => closeModal(imageModal));
+//Close event listener for each close modal button
+closeModalButtons.forEach((button) => {
+  //Find the parent modal
+  const modal = button.closest(".modal");
 
-//Generate cards for cards list
-initialCards.forEach((card) => {
-  const cardElement = getCardElement(card);
-  cardsList.append(cardElement);
+  button.addEventListener("click", () => closeModal(modal));
 });
