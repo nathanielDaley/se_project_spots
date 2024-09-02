@@ -73,8 +73,7 @@ const cardsList = document.querySelector(".cards__list");
 //Code that runs when the web page was loaded
 //Generate cards for cards list
 initialCards.forEach((card) => {
-  const cardElement = getCardElement(card);
-  cardsList.append(cardElement);
+  addCardToCardList(card, "append");
 });
 
 //Predifined functions
@@ -136,16 +135,21 @@ function handleEditProfileSubmit(evt) {
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
-  const cardElement = getCardElement({
+  const card = {
     name: newPostModalCaptionInput.value,
     link: newPostModalImageLinkInput.value,
-  });
+  };
 
-  cardsList.prepend(cardElement);
+  addCardToCardList(card);
 
   evt.target.reset();
 
   closeModal(newPostModal);
+}
+
+function addCardToCardList(card, method = "prepend") {
+  const cardElement = getCardElement(card);
+  cardsList[method](cardElement);
 }
 
 //Event listeners
