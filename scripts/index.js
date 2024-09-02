@@ -55,6 +55,12 @@ const newPostModalCaptionInput = newPostModal.querySelector(
   ".modal__input#caption"
 );
 
+//Image Modal & Elements
+const imageModal = document.querySelector("#preview-modal");
+const closeImageModalButton = imageModal.querySelector(".modal__close-btn");
+const imageModalImage = imageModal.querySelector(".modal__image");
+const imageModalCaption = imageModal.querySelector(".modal__caption");
+
 //Card template
 const cardTemplate = document.querySelector("#card");
 
@@ -80,6 +86,13 @@ function getCardElement(data) {
   //Make the like button state change when clicked
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__like-btn_liked");
+  });
+
+  cardImage.addEventListener("click", () => {
+    imageModalImage.src = data.link;
+    imageModalCaption.textContent = data.name;
+    imageModalImage.alt = data.name;
+    openModal(imageModal);
   });
 
   return cardElement;
@@ -140,6 +153,9 @@ closeNewPostModalButton.addEventListener("click", () =>
   closeModal(newPostModal)
 );
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
+
+//Image Modal event listener
+closeImageModalButton.addEventListener("click", () => closeModal(imageModal));
 
 //Generate cards for cards list
 initialCards.forEach((card) => {
