@@ -44,6 +44,16 @@
   cursor: pointer;
 }
 
+.card__like-btn_liked {
+  background-image: url(../images/heart-icon-liked.svg);
+  opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+  opacity: 0.5;
+  transition: opacity linear 0.2s;
+}
+
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
