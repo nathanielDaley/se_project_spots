@@ -35,7 +35,7 @@
               <img src="./images/edit-icon.svg" alt="Pencil icon" />Edit Profile
             </button>
           </div>
-          <button class="profile__add-btn">
+          <button type="button" class="profile__add-btn">
             <img src="./images/plus.svg" alt="Plus icon" />New Post
           </button>
         </section>
@@ -68,6 +68,7 @@
                 type="text"
                 class="modal__input"
                 placeholder="Name"
+                name="name"
               />
             </label>
             <label for="description" class="modal__label">
@@ -77,6 +78,36 @@
                 type="text"
                 class="modal__input"
                 placeholder="Description"
+                name="description"
+              />
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal" id="new-post-modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-btn"></button>
+          <h2 class="modal__title">New post</h2>
+          <form name="edit profile" class="modal__form" id="new-post-form">
+            <label for="image-link" class="modal__label">
+              Image link
+              <input
+                id="image-link"
+                type="url"
+                class="modal__input"
+                placeholder="Paste a link to the picture"
+                name="link"
+              />
+            </label>
+            <label for="caption" class="modal__label">
+              Caption
+              <input
+                id="caption"
+                type="text"
+                class="modal__input"
+                placeholder="Type your caption"
+                name="caption"
               />
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
