@@ -124,6 +124,10 @@
   border-color: rgba(255, 0, 0, 0.6);
 }
 
+.modal__input_type_error:focus {
+  outline-color: rgba(255, 0, 0, 0.6);
+}
+
 .modal__input-error {
   font-family: Poppins;
   font-size: 16px;
