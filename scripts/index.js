@@ -40,20 +40,21 @@ const profileDescriptionParagraph = document.querySelector(
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileModalForm = document.forms["edit-profile-form"];
-const editProfileModalNameInput =
-  editProfileModal.querySelector(".modal__input#name");
+const editProfileModalNameInput = editProfileModal.querySelector(
+  ".modal__input#name-input"
+);
 const editProfileModalDescriptionInput = editProfileModal.querySelector(
-  ".modal__input#description"
+  ".modal__input#description-input"
 );
 
 //New Post Modal & Elements
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostModalForm = document.forms["new-post-form"];
 const newPostModalImageLinkInput = newPostModal.querySelector(
-  ".modal__input#image-link"
+  ".modal__input#image-link-input"
 );
 const newPostModalCaptionInput = newPostModal.querySelector(
-  ".modal__input#caption"
+  ".modal__input#caption-input"
 );
 
 //Image Modal & Elements

@@ -75,7 +75,7 @@
             <label for="name" class="modal__label">
               Name
               <input
-                id="name"
+                id="name-input"
                 type="text"
                 class="modal__input"
                 placeholder="Name"
@@ -84,11 +84,14 @@
                 minlength="2"
                 maxlength="40"
               />
+              <span class="modal__input-error name-input-error"
+                >Please fill out this field.</span
+              >
             </label>
             <label for="description" class="modal__label">
               Description
               <input
-                id="description"
+                id="description-input"
                 type="text"
                 class="modal__input"
                 placeholder="Description"
@@ -97,6 +100,9 @@
                 minlength="2"
                 maxlength="200"
               />
+              <span class="modal__input-error description-input-error"
+                >Please fill out this field.</span
+              >
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -114,18 +120,21 @@
             <label for="image-link" class="modal__label">
               Image link
               <input
-                id="image-link"
+                id="image-link-input"
                 type="url"
                 class="modal__input"
                 placeholder="Paste a link to the picture"
                 name="link"
                 required
               />
+              <span class="modal__input-error image-link-input-error"
+                >Please enter a URL.</span
+              >
             </label>
             <label for="caption" class="modal__label">
               Caption
               <input
-                id="caption"
+                id="caption-input"
                 type="text"
                 class="modal__input"
                 placeholder="Type your caption"
@@ -134,6 +143,9 @@
                 minlength="2"
                 maxlength="30"
               />
+              <span class="modal__input-error caption-input-error"
+                >Please fill out this field.</span
+              >
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
