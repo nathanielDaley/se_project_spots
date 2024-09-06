@@ -152,6 +152,15 @@
   cursor: pointer;
 }
 
+.modal__submit-btn_inactive {
+  opacity: 0.5;
+}
+
+.modal__submit-btn_inactive:hover {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .modal__caption {
   background-color: rgba(33, 33, 33, 1);
   color: rgba(255, 255, 255, 1);
