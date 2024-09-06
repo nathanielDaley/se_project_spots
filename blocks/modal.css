@@ -130,11 +130,6 @@
   font-weight: 500;
   line-height: 17.6px;
   color: rgba(255, 0, 0, 0.7);
-  display: none;
-}
-
-.modal__input-error_active {
-  display: inline;
 }
 
 .modal__submit-btn {
