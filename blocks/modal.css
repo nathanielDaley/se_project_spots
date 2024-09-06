@@ -112,6 +112,11 @@
   color: rgba(33, 33, 33, 1);
 }
 
+.modal__input:hover {
+  border-color: rgb(33, 33, 33);
+  cursor: pointer;
+}
+
 .modal__input::placeholder {
   font-family: Poppins, Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -122,6 +127,10 @@
 
 .modal__input_type_error {
   border-color: rgba(255, 0, 0, 0.6);
+}
+
+.modal__input_type_error:hover {
+  border-color: rgb(255, 0, 0);
 }
 
 .modal__input_type_error:focus {
