@@ -24,6 +24,10 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+const resetValidation = (formElement, inputList) => {
+  inputList.forEach((input) => hideInputError(formElement, input));
+};
+
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     disableButton(buttonElement);

@@ -168,6 +168,11 @@ editProfileButton.addEventListener("click", () => {
   editProfileModalDescriptionInput.value =
     profileDescriptionParagraph.textContent;
 
+  resetValidation(editProfileModalForm, [
+    editProfileModalNameInput,
+    editProfileModalDescriptionInput,
+  ]);
+
   openModal(editProfileModal);
 });
 editProfileModalForm.addEventListener("submit", handleEditProfileSubmit);
