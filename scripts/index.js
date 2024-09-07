@@ -121,10 +121,17 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+
+  modal.focus();
+
+  modal.addEventListener("click", handleModalOutsideClick);
+  modal.addEventListener("keydown", handleModalEscapeKey);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+
+  modal.removeEventListener("click", handleModalOutsideClick);
 }
 
 function handleEditProfileSubmit(evt) {
@@ -159,6 +166,19 @@ function handleNewPostSubmit(evt) {
 function addCardToCardList(card, method = "prepend") {
   const cardElement = getCardElement(card);
   cardsList[method](cardElement);
+}
+
+function handleModalOutsideClick(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModal(evt.target);
+  }
+}
+
+function handleModalEscapeKey(evt) {
+  console.log(evt.key);
+  if (evt.key === "Escape") {
+    closeModal(evt.currentTarget);
+  }
 }
 
 //Event listeners
