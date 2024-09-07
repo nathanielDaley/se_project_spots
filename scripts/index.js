@@ -134,7 +134,7 @@ function handleEditProfileSubmit(evt) {
   profileDescriptionParagraph.textContent =
     editProfileModalDescriptionInput.value;
 
-  disableButton(editProfileSubmitButton);
+  disableButton(editProfileSubmitButton, settings);
 
   closeModal(editProfileModal);
 }
@@ -151,7 +151,7 @@ function handleNewPostSubmit(evt) {
 
   evt.target.reset();
 
-  disableButton(newPostSubmitButton);
+  disableButton(newPostSubmitButton, settings);
 
   closeModal(newPostModal);
 }
@@ -168,10 +168,11 @@ editProfileButton.addEventListener("click", () => {
   editProfileModalDescriptionInput.value =
     profileDescriptionParagraph.textContent;
 
-  resetValidation(editProfileModalForm, [
-    editProfileModalNameInput,
-    editProfileModalDescriptionInput,
-  ]);
+  resetValidation(
+    editProfileModalForm,
+    [editProfileModalNameInput, editProfileModalDescriptionInput],
+    settings
+  );
 
   openModal(editProfileModal);
 });
