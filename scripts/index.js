@@ -132,6 +132,7 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 
   modal.removeEventListener("click", handleModalOutsideClick);
+  modal.removeEventListener("keydown", handleModalEscapeKey);
 }
 
 function handleEditProfileSubmit(evt) {
