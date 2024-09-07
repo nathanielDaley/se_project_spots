@@ -34,6 +34,5 @@ https://nathanieldaley.github.io/se_project_spots/
 
 ## Plan on improving the project
 
-- Implement New Post, and Like buttons
-- Show a larger version of an image when an image is clicked
 - Add more media queries
+- Fix image previews shrinking slightly at certain screen sizes
