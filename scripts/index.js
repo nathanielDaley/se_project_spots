@@ -176,7 +176,6 @@ function handleModalOutsideClick(evt) {
 }
 
 function handleModalEscapeKey(evt) {
-  console.log(evt.key);
   if (evt.key === "Escape") {
     closeModal(evt.currentTarget);
   }
