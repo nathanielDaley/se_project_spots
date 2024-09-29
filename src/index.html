@@ -13,18 +13,21 @@
       content="gallery, bem, html, css, responsive web design, nathaniel daley"
     />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spots logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spots logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Profile avatar"
             class="profile__avatar"
           />
@@ -32,11 +35,15 @@
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/edit-icon.svg" alt="Pencil icon" />Edit Profile
+              <img
+                src="<%=require('./images/edit-icon.svg')%>"
+                alt="Pencil icon"
+              />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/plus.svg" alt="Plus icon" />New Post
+            <img src="<%=require('./images/plus.svg')%>" alt="Plus icon" />New
+            Post
           </button>
         </section>
         <section class="cards page__section">
@@ -48,7 +55,10 @@
                   type="button"
                   class="card__delete-btn"
                 >
-                  <img src="./images/delete-icon.svg" alt="delete icon" />
+                  <img
+                    src="<%=require('./images/delete-icon.svg')%>"
+                    alt="delete icon"
+                  />
                 </button>
                 <img class="card__image" src="" alt="" />
                 <div class="card__content">
@@ -171,7 +181,5 @@
         </div>
       </div>
     </div>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validation.js"></script>
   </body>
 </html>
