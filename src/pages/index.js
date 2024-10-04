@@ -5,6 +5,7 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
 //importing images this ways loads them with webpack
 import valThorensImage from "../images/1-photo-by-moritz-feldmann-from-pexels.jpg";
@@ -14,36 +15,13 @@ import longBridgeImage from "../images/4-photo-by-maurice-laschet-from-pexels.jp
 import tunnelWithLightImage from "../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
 import mountainHouseImage from "../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: valThorensImage,
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "f7822124-59b5-42fe-a8b8-2f48bd0b923b",
+    "Content-Type": "application/json",
   },
-  {
-    name: "Restaurant terrace",
-    link: restaurantTerraceImage,
-  },
-  {
-    name: "An outdoor cafe",
-    link: outdoorCafeImage,
-  },
-  {
-    name: "A very long bridge, over the forest canopy",
-    link: longBridgeImage,
-  },
-  {
-    name: "Tunnel with morning light",
-    link: tunnelWithLightImage,
-  },
-  {
-    name: "Mountain house",
-    link: mountainHouseImage,
-  },
-  {
-    name: "Woolridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
+});
 
 // Profile elements
 const editProfileButton = document.querySelector(".profile__edit-btn");
@@ -91,13 +69,7 @@ const cardTemplate = document.querySelector("#card");
 //Cards container
 const cardsList = document.querySelector(".cards__list");
 
-//Code that runs when the web page was loaded
-//Generate cards for cards list
-initialCards.forEach((card) => {
-  addCardToCardList(card, "append");
-});
-
-//Predifined functions
+//Predefined functions
 function getCardElement(data) {
   //Create a new card by cloning the template card
   const cardElement = cardTemplate.content
@@ -226,4 +198,16 @@ closeModalButtons.forEach((button) => {
   button.addEventListener("click", () => closeModal(modal));
 });
 
+//getIntialCards returns a Promise that is retrieving cards from the server
+//when it resolves the result is an object that holds card objects
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((card) => {
+      addCardToCardList(card, "append");
+    });
+  })
+  .catch(console.error);
+
+//enables validation on the form
 enableValidation(validationConfig);
