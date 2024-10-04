@@ -50,8 +50,6 @@ const editProfileAvatarModal = document.querySelector(
   "#edit-profile-avatar-modal"
 );
 const editProfileAvatarModalForm = document.forms["edit-profile-avatar-form"];
-const editProfileAvatarSubmitButton =
-  editProfileAvatarModalForm.querySelector(".modal__submit-btn");
 const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
   ".modal__input#avatar-link-input"
 );
@@ -59,8 +57,6 @@ const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
 //New Post Modal & Elements
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostModalForm = document.forms["new-post-form"];
-const newPostSubmitButton =
-  newPostModalForm.querySelector(".modal__submit-btn");
 const newPostModalImageLinkInput = newPostModal.querySelector(
   ".modal__input#image-link-input"
 );
