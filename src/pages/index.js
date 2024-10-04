@@ -30,6 +30,7 @@ const profileNameLabel = document.querySelector(".profile__name");
 const profileDescriptionParagraph = document.querySelector(
   ".profile__description"
 );
+const profileAvatar = document.querySelector(".profile__avatar");
 
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -126,28 +127,43 @@ function closeModal(modal) {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
-  profileNameLabel.textContent = editProfileModalNameInput.value;
-  profileDescriptionParagraph.textContent =
-    editProfileModalDescriptionInput.value;
+  api
+    .editUserInfo({
+      name: editProfileModalNameInput.value,
+      about: editProfileModalDescriptionInput.value,
+    })
+    .then((data) => {
+      profileNameLabel.textContent = data.name;
+      profileDescriptionParagraph.textContent = data.about;
 
-  disableButton(editProfileSubmitButton, validationConfig);
+      disableButton(editProfileSubmitButton, validationConfig);
 
-  closeModal(editProfileModal);
+      closeModal(editProfileModal);
+    })
+    .catch(console.error);
 }
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
-  const card = {
-    name: newPostModalCaptionInput.value,
-    link: newPostModalImageLinkInput.value,
-  };
+  api
+    .addCard({
+      name: newPostModalCaptionInput.value,
+      link: newPostModalImageLinkInput.value,
+    })
+    .then((data) => {
+      const card = {
+        name: data.name,
+        link: data.link,
+      };
 
-  addCardToCardList(card);
+      addCardToCardList(card);
 
-  evt.target.reset();
+      evt.target.reset();
 
-  closeModal(newPostModal);
+      closeModal(newPostModal);
+    })
+    .catch(console.error);
 }
 
 function addCardToCardList(card, method = "prepend") {
@@ -198,14 +214,19 @@ closeModalButtons.forEach((button) => {
   button.addEventListener("click", () => closeModal(modal));
 });
 
-//getIntialCards returns a Promise that is retrieving cards from the server
-//when it resolves the result is an object that holds card objects
+//performs all network fetchs and handles the responses
+//getAppInfo returns Promise.all.
 api
-  .getInitialCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([cards, userInfo]) => {
+    //generates all of the cards into picture cards and displays them on the page
     cards.forEach((card) => {
       addCardToCardList(card, "append");
     });
+    //change the user information based on the data retrieved from the server
+    profileNameLabel.textContent = userInfo.name;
+    profileDescriptionParagraph.textContent = userInfo.about;
+    profileAvatar.src = userInfo.avatar;
   })
   .catch(console.error);
 
