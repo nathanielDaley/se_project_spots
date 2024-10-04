@@ -7,14 +7,6 @@ import {
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
-//importing images this ways loads them with webpack
-import valThorensImage from "../images/1-photo-by-moritz-feldmann-from-pexels.jpg";
-import restaurantTerraceImage from "../images/2-photo-by-ceiline-from-pexels.jpg";
-import outdoorCafeImage from "../images/3-photo-by-tubanur-dogan-from-pexels.jpg";
-import longBridgeImage from "../images/4-photo-by-maurice-laschet-from-pexels.jpg";
-import tunnelWithLightImage from "../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
-import mountainHouseImage from "../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -231,7 +223,7 @@ editProfileModalForm.addEventListener("submit", handleEditProfileSubmit);
 editProfileAvatarButton.addEventListener("click", () => {
   openModal(editProfileAvatarModal);
 });
-editProfileAvatarModal.addEventListener(
+editProfileAvatarModalForm.addEventListener(
   "submit",
   handleEditProfileAvatarSubmit
 );
