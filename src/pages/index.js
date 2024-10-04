@@ -31,6 +31,7 @@ const profileDescriptionParagraph = document.querySelector(
   ".profile__description"
 );
 const profileAvatar = document.querySelector(".profile__avatar");
+const editProfileAvatarButton = document.querySelector(".profile__avatar-btn");
 
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -42,6 +43,17 @@ const editProfileModalNameInput = editProfileModal.querySelector(
 );
 const editProfileModalDescriptionInput = editProfileModal.querySelector(
   ".modal__input#description-input"
+);
+
+//Edite Profile Avatar Modal & Elements
+const editProfileAvatarModal = document.querySelector(
+  "#edit-profile-avatar-modal"
+);
+const editProfileAvatarModalForm = document.forms["edit-profile-avatar-form"];
+const editProfileAvatarSubmitButton =
+  editProfileAvatarModalForm.querySelector(".modal__submit-btn");
+const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
+  ".modal__input#avatar-link-input"
 );
 
 //New Post Modal & Elements
@@ -108,6 +120,7 @@ function getCardElement(data) {
   return cardElement;
 }
 
+//Utility functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
 
@@ -124,6 +137,24 @@ function closeModal(modal) {
   modal.removeEventListener("keydown", handleModalEscapeKey);
 }
 
+function addCardToCardList(card, method = "prepend") {
+  const cardElement = getCardElement(card);
+  cardsList[method](cardElement);
+}
+
+function handleModalOutsideClick(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModal(evt.target);
+  }
+}
+
+function handleModalEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    closeModal(evt.currentTarget);
+  }
+}
+
+//Form submit handlers
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
@@ -141,6 +172,23 @@ function handleEditProfileSubmit(evt) {
       closeModal(editProfileModal);
     })
     .catch(console.error);
+}
+
+function handleEditProfileAvatarSubmit(evt) {
+  evt.preventDefault();
+
+  api
+    .editUserAvatar({ avatar: editProfileAvatarModalImageInput.value })
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+
+      evt.target.reset();
+
+      closeModal(editProfileAvatarModal);
+    })
+    .catch(console.error);
+
+  console.log();
 }
 
 function handleNewPostSubmit(evt) {
@@ -166,23 +214,6 @@ function handleNewPostSubmit(evt) {
     .catch(console.error);
 }
 
-function addCardToCardList(card, method = "prepend") {
-  const cardElement = getCardElement(card);
-  cardsList[method](cardElement);
-}
-
-function handleModalOutsideClick(evt) {
-  if (evt.target.classList.contains("modal_opened")) {
-    closeModal(evt.target);
-  }
-}
-
-function handleModalEscapeKey(evt) {
-  if (evt.key === "Escape") {
-    closeModal(evt.currentTarget);
-  }
-}
-
 //Event listeners
 //Edit Profile Modal event listeners
 editProfileButton.addEventListener("click", () => {
@@ -199,6 +230,15 @@ editProfileButton.addEventListener("click", () => {
   openModal(editProfileModal);
 });
 editProfileModalForm.addEventListener("submit", handleEditProfileSubmit);
+
+// Edit Profile Avatar event listeners
+editProfileAvatarButton.addEventListener("click", () => {
+  openModal(editProfileAvatarModal);
+});
+editProfileAvatarModal.addEventListener(
+  "submit",
+  handleEditProfileAvatarSubmit
+);
 
 // New Post Modal event listeners
 newPostButton.addEventListener("click", () => {
