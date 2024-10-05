@@ -7,6 +7,7 @@ import {
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
+// Api handles all fetch requests to the server
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -56,6 +57,13 @@ const newPostModalCaptionInput = newPostModal.querySelector(
   ".modal__input#caption-input"
 );
 
+//Delete card Modal & Elements
+const deleteCardModal = document.querySelector("#delete-modal");
+const deleteCardConfirmButton =
+  deleteCardModal.querySelector(".modal__delete-btn");
+const deleteCardCancelButton =
+  deleteCardModal.querySelector(".modal__cancel-btn");
+
 //Image Modal & Elements
 const imageModal = document.querySelector("#preview-modal");
 const imageModalImage = imageModal.querySelector(".modal__image");
@@ -69,6 +77,10 @@ const cardTemplate = document.querySelector("#card");
 
 //Cards container
 const cardsList = document.querySelector(".cards__list");
+
+//Used for deleting cards in handleCardDelete functions
+let selectedCard;
+let selectedCardId;
 
 //Predefined functions
 function getCardElement(data) {
@@ -94,9 +106,9 @@ function getCardElement(data) {
   });
 
   //Delete card when delete button clicked
-  cardDeleteButton.addEventListener("click", () =>
-    cardsList.removeChild(cardElement)
-  );
+  cardDeleteButton.addEventListener("click", () => {
+    handleDeleteCard(cardElement, data);
+  });
 
   cardImage.addEventListener("click", () => {
     imageModalImage.src = data.link;
@@ -140,6 +152,13 @@ function handleModalEscapeKey(evt) {
   if (evt.key === "Escape") {
     closeModal(evt.currentTarget);
   }
+}
+
+function handleDeleteCard(cardElement, data) {
+  selectedCard = cardElement;
+  selectedCardId = data._id;
+
+  openModal(deleteCardModal);
 }
 
 //Form submit handlers
@@ -202,6 +221,27 @@ function handleNewPostSubmit(evt) {
     .catch(console.error);
 }
 
+function handleDeleteCardSubmit(evt) {
+  evt.preventDefault();
+
+  console.log("test");
+
+  api
+    .deleteCard({ id: selectedCardId })
+    .then(() => {
+      selectedCard.remove();
+
+      closeModal(deleteCardModal);
+    })
+    .catch(console.error);
+}
+
+function handleDeleteCardCancel(evt) {
+  evt.preventDefault();
+
+  closeModal(deleteCardModal);
+}
+
 //Event listeners
 //Edit Profile Modal event listeners
 editProfileButton.addEventListener("click", () => {
@@ -233,6 +273,10 @@ newPostButton.addEventListener("click", () => {
   openModal(newPostModal);
 });
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
+
+// Delete Card Modal event listeners
+deleteCardConfirmButton.addEventListener("click", handleDeleteCardSubmit);
+deleteCardCancelButton.addEventListener("click", handleDeleteCardCancel);
 
 //Close event listener for each close modal button
 closeModalButtons.forEach((button) => {

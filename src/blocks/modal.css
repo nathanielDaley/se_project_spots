@@ -193,6 +193,7 @@
   height: 52px;
   border-radius: 8px;
   border: none;
+  padding: 0;
 }
 
 .modal__delete-btn:hover {
@@ -212,12 +213,19 @@
   height: 52px;
   border-radius: 8px;
   border: 1px solid rgba(33, 33, 33, 1);
+  padding: 0;
 }
 
 .modal__cancel-btn:hover {
   cursor: pointer;
   background-color: rgba(33, 33, 33, 1);
   color: rgba(255, 255, 255, 1);
+}
+
+.modal__button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .modal__caption {
