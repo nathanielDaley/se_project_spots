@@ -94,6 +94,21 @@ class Api {
       return Promise.reject(`Error deleting card: ${res.status}`);
     });
   }
+
+  changeCardLikeStatus({ id, isLiked }) {
+    const fetchMethod = isLiked ? "DELETE" : "PUT";
+
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: fetchMethod,
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Error deleting card: ${res.status}`);
+    });
+  }
 }
 
 export default Api;

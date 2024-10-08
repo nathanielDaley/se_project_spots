@@ -79,8 +79,7 @@ const cardTemplate = document.querySelector("#card");
 const cardsList = document.querySelector(".cards__list");
 
 //Used for deleting cards in handleCardDelete functions
-let selectedCard;
-let selectedCardId;
+let selectedCard, selectedCardId;
 
 //Predefined functions
 function getCardElement(data) {
@@ -99,11 +98,14 @@ function getCardElement(data) {
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
+  if (data.isLiked) {
+    cardLikeButton.classList.toggle("card__like-btn_liked");
+  }
 
   //Make the like button state change when clicked
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__like-btn_liked");
-  });
+  cardLikeButton.addEventListener("click", (evt) =>
+    handleToggleLikeCard(evt, data)
+  );
 
   //Delete card when delete button clicked
   cardDeleteButton.addEventListener("click", () => {
@@ -152,6 +154,15 @@ function handleModalEscapeKey(evt) {
   if (evt.key === "Escape") {
     closeModal(evt.currentTarget);
   }
+}
+
+function handleToggleLikeCard(evt, data) {
+  api
+    .changeCardLikeStatus({ id: data._id, isLiked: data.isLiked })
+    .then(() => {
+      evt.target.classList.toggle("card__like-btn_liked");
+    })
+    .catch(console.error);
 }
 
 function handleDeleteCard(cardElement, data) {
