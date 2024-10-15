@@ -168,7 +168,6 @@ function handleModalEscapeKey(evt) {
 }
 
 function handleToggleLikeCard(evt, data) {
-  console.log(data);
   api
     .changeCardLikeStatus({ id: data._id, isLiked: data.isLiked })
     .then(() => {
@@ -242,16 +241,7 @@ function handleNewPostSubmit(evt) {
       link: newPostModalImageLinkInput.value,
     })
     .then((data) => {
-      const card = {
-        createdAt: data.createdAt,
-        isLiked: data.isLiked,
-        link: data.link,
-        name: data.name,
-        owner: data.owner,
-        _id: data._id,
-      };
-
-      addCardToCardList(card);
+      addCardToCardList(data);
 
       evt.target.reset();
 
