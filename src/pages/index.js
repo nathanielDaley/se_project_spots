@@ -7,6 +7,13 @@ import {
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
+const cardLikedCSSClass = "card__like-btn_liked";
+const modalLikedCSSClass = "modal_opened";
+const savingSaveButtonText = "Saving...";
+const defaultSaveButtonText = "Save";
+const deletingDeleteButtonText = "Deleting...";
+const defaultDeleteButtonText = "Delete";
+
 // Api handles all fetch requests to the server
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -43,6 +50,8 @@ const editProfileAvatarModal = document.querySelector(
   "#edit-profile-avatar-modal"
 );
 const editProfileAvatarModalForm = document.forms["edit-profile-avatar-form"];
+const editProfileAvatarSubmitButton =
+  editProfileAvatarModalForm.querySelector(".modal__submit-btn");
 const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
   ".modal__input#avatar-link-input"
 );
@@ -50,6 +59,8 @@ const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
 //New Post Modal & Elements
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostModalForm = document.forms["new-post-form"];
+const newPostSubmitButton =
+  newPostModalForm.querySelector(".modal__submit-btn");
 const newPostModalImageLinkInput = newPostModal.querySelector(
   ".modal__input#image-link-input"
 );
@@ -99,7 +110,7 @@ function getCardElement(data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
   if (data.isLiked) {
-    cardLikeButton.classList.toggle("card__like-btn_liked");
+    cardLikeButton.classList.toggle(cardLikedCSSClass);
   }
 
   //Make the like button state change when clicked
@@ -124,7 +135,7 @@ function getCardElement(data) {
 
 //Utility functions
 function openModal(modal) {
-  modal.classList.add("modal_opened");
+  modal.classList.add(modalLikedCSSClass);
 
   modal.focus();
 
@@ -133,7 +144,7 @@ function openModal(modal) {
 }
 
 function closeModal(modal) {
-  modal.classList.remove("modal_opened");
+  modal.classList.remove(modalLikedCSSClass);
 
   modal.removeEventListener("click", handleModalOutsideClick);
   modal.removeEventListener("keydown", handleModalEscapeKey);
@@ -145,7 +156,7 @@ function addCardToCardList(card, method = "prepend") {
 }
 
 function handleModalOutsideClick(evt) {
-  if (evt.target.classList.contains("modal_opened")) {
+  if (evt.target.classList.contains(modalLikedCSSClass)) {
     closeModal(evt.target);
   }
 }
@@ -160,7 +171,7 @@ function handleToggleLikeCard(evt, data) {
   api
     .changeCardLikeStatus({ id: data._id, isLiked: data.isLiked })
     .then(() => {
-      evt.target.classList.toggle("card__like-btn_liked");
+      evt.target.classList.toggle(cardLikedCSSClass);
     })
     .catch(console.error);
 }
@@ -176,6 +187,10 @@ function handleDeleteCard(cardElement, data) {
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
 
+  editProfileSubmitButton.textContent = savingSaveButtonText;
+
+  disableButton(editProfileSubmitButton, validationConfig);
+
   api
     .editUserInfo({
       name: editProfileModalNameInput.value,
@@ -185,15 +200,19 @@ function handleEditProfileSubmit(evt) {
       profileNameLabel.textContent = data.name;
       profileDescriptionParagraph.textContent = data.about;
 
-      disableButton(editProfileSubmitButton, validationConfig);
-
       closeModal(editProfileModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      editProfileSubmitButton.textContent = defaultSaveButtonText;
+    });
 }
 
 function handleEditProfileAvatarSubmit(evt) {
   evt.preventDefault();
+
+  editProfileAvatarSubmitButton.textContent = savingSaveButtonText;
+  console.log("tesT");
 
   api
     .editUserAvatar({ avatar: editProfileAvatarModalImageInput.value })
@@ -201,6 +220,8 @@ function handleEditProfileAvatarSubmit(evt) {
       profileAvatar.src = data.avatar;
 
       evt.target.reset();
+
+      editProfileAvatarSubmitButton.textContent = defaultSaveButtonText;
 
       closeModal(editProfileAvatarModal);
     })
@@ -211,6 +232,8 @@ function handleEditProfileAvatarSubmit(evt) {
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
+
+  newPostSubmitButton.textContent = savingSaveButtonText;
 
   api
     .addCard({
@@ -227,6 +250,8 @@ function handleNewPostSubmit(evt) {
 
       evt.target.reset();
 
+      newPostSubmitButton.textContent = defaultSaveButtonText;
+
       closeModal(newPostModal);
     })
     .catch(console.error);
@@ -235,12 +260,14 @@ function handleNewPostSubmit(evt) {
 function handleDeleteCardSubmit(evt) {
   evt.preventDefault();
 
-  console.log("test");
+  deleteCardConfirmButton.textContent = deletingDeleteButtonText;
 
   api
     .deleteCard({ id: selectedCardId })
     .then(() => {
       selectedCard.remove();
+
+      deleteCardConfirmButton.textContent = defaultDeleteButtonText;
 
       closeModal(deleteCardModal);
     })
