@@ -221,11 +221,12 @@ function handleEditProfileAvatarSubmit(evt) {
 
       evt.target.reset();
 
-      editProfileAvatarSubmitButton.textContent = defaultSaveButtonText;
-
       closeModal(editProfileAvatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      editProfileAvatarSubmitButton.textContent = defaultSaveButtonText;
+    });
 
   console.log();
 }
@@ -245,11 +246,12 @@ function handleNewPostSubmit(evt) {
 
       evt.target.reset();
 
-      newPostSubmitButton.textContent = defaultSaveButtonText;
-
       closeModal(newPostModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      newPostSubmitButton.textContent = defaultSaveButtonText;
+    });
 }
 
 function handleDeleteCardSubmit(evt) {
@@ -262,11 +264,12 @@ function handleDeleteCardSubmit(evt) {
     .then(() => {
       selectedCard.remove();
 
-      deleteCardConfirmButton.textContent = defaultDeleteButtonText;
-
       closeModal(deleteCardModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      deleteCardConfirmButton.textContent = defaultDeleteButtonText;
+    });
 }
 
 function handleDeleteCardCancel(evt) {
