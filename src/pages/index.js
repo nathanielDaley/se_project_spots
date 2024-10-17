@@ -212,7 +212,6 @@ function handleEditProfileAvatarSubmit(evt) {
   evt.preventDefault();
 
   editProfileAvatarSubmitButton.textContent = savingSaveButtonText;
-  console.log("tesT");
 
   api
     .editUserAvatar({ avatar: editProfileAvatarModalImageInput.value })
@@ -227,8 +226,6 @@ function handleEditProfileAvatarSubmit(evt) {
     .finally(() => {
       editProfileAvatarSubmitButton.textContent = defaultSaveButtonText;
     });
-
-  console.log();
 }
 
 function handleNewPostSubmit(evt) {
