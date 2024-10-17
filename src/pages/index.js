@@ -189,8 +189,6 @@ function handleEditProfileSubmit(evt) {
 
   editProfileSubmitButton.textContent = savingSaveButtonText;
 
-  disableButton(editProfileSubmitButton, validationConfig);
-
   api
     .editUserInfo({
       name: editProfileModalNameInput.value,
@@ -199,6 +197,8 @@ function handleEditProfileSubmit(evt) {
     .then((data) => {
       profileNameLabel.textContent = data.name;
       profileDescriptionParagraph.textContent = data.about;
+
+      disableButton(editProfileSubmitButton, validationConfig);
 
       closeModal(editProfileModal);
     })
