@@ -4,6 +4,7 @@ import {
   settings as validationConfig,
   resetValidation,
   disableButton,
+  enableButton,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
 
@@ -189,6 +190,8 @@ function handleEditProfileSubmit(evt) {
 
   editProfileSubmitButton.textContent = savingSaveButtonText;
 
+  disableButton(editProfileSubmitButton, validationConfig);
+
   api
     .editUserInfo({
       name: editProfileModalNameInput.value,
@@ -198,11 +201,12 @@ function handleEditProfileSubmit(evt) {
       profileNameLabel.textContent = data.name;
       profileDescriptionParagraph.textContent = data.about;
 
-      disableButton(editProfileSubmitButton, validationConfig);
-
       closeModal(editProfileModal);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error(error);
+      enableButton(editProfileSubmitButton, validationConfig);
+    })
     .finally(() => {
       editProfileSubmitButton.textContent = defaultSaveButtonText;
     });
@@ -213,6 +217,8 @@ function handleEditProfileAvatarSubmit(evt) {
 
   editProfileAvatarSubmitButton.textContent = savingSaveButtonText;
 
+  disableButton(editProfileAvatarSubmitButton, validationConfig);
+
   api
     .editUserAvatar({ avatar: editProfileAvatarModalImageInput.value })
     .then((data) => {
@@ -222,7 +228,10 @@ function handleEditProfileAvatarSubmit(evt) {
 
       closeModal(editProfileAvatarModal);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error(error);
+      enableButton(editProfileAvatarSubmitButton, validationConfig);
+    })
     .finally(() => {
       editProfileAvatarSubmitButton.textContent = defaultSaveButtonText;
     });
@@ -232,6 +241,8 @@ function handleNewPostSubmit(evt) {
   evt.preventDefault();
 
   newPostSubmitButton.textContent = savingSaveButtonText;
+
+  disableButton(newPostSubmitButton, validationConfig);
 
   api
     .addCard({
@@ -245,7 +256,10 @@ function handleNewPostSubmit(evt) {
 
       closeModal(newPostModal);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error(error);
+      enableButton(newPostSubmitButton, validationConfig);
+    })
     .finally(() => {
       newPostSubmitButton.textContent = defaultSaveButtonText;
     });
@@ -256,6 +270,8 @@ function handleDeleteCardSubmit(evt) {
 
   deleteCardConfirmButton.textContent = deletingDeleteButtonText;
 
+  disableButton(deleteCardConfirmButton, validationConfig);
+
   api
     .deleteCard({ id: selectedCardId })
     .then(() => {
@@ -263,7 +279,10 @@ function handleDeleteCardSubmit(evt) {
 
       closeModal(deleteCardModal);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error(error);
+      enableButton(deleteCardConfirmButton, validationConfig);
+    })
     .finally(() => {
       deleteCardConfirmButton.textContent = defaultDeleteButtonText;
     });

@@ -32,3 +32,4 @@ This is the third project of the Software Engineering program at TripleTen. It w
 - Add more media queries
 - Fix image previews shrinking slightly at certain screen sizes
 - Add Saving and Deleting animations
+- Fix last image appearing briefly in image modal after clicking on a different image
