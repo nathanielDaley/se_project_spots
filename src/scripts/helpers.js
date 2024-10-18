@@ -17,7 +17,12 @@ function _renderLoading(
   }
 }
 
-export function handleSubmit(request, evt, loadingText = "Saving...") {
+export function handleSubmit(
+  request,
+  evt,
+  loadingText = "Saving...",
+  finallyEnableButton = false
+) {
   evt.preventDefault();
   debugger;
   //get the button that submitted the form
@@ -37,9 +42,14 @@ export function handleSubmit(request, evt, loadingText = "Saving...") {
     .catch((error) => {
       console.error(error);
       // reenables the button so the user can try again
-      enableButton(submitButton, validationConfig);
+      if (!finallyEnableButton) {
+        enableButton(submitButton, validationConfig);
+      }
     })
     .finally(() => {
       _renderLoading(false, submitButton, initialText);
+      if (finallyEnableButton) {
+        enableButton(submitButton, validationConfig);
+      }
     });
 }

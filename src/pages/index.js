@@ -241,7 +241,7 @@ function handleDeleteCardSubmit(evt) {
     });
   }
 
-  handleSubmit(makeRequest, evt, deletingDeleteButtonText);
+  handleSubmit(makeRequest, evt, deletingDeleteButtonText, true);
 }
 
 function handleDeleteCardCancel(evt) {
