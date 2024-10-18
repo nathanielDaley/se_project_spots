@@ -3,7 +3,7 @@
 ### Overview
 
 This is the third project of the Software Engineering program at TripleTen. It was created using HTML and CSS, based on the design brief.
-https://nathanieldaley.github.io/se_project_spots/
+[https://nathanieldaley.github.io/se_project_spots/index.html](https://nathanieldaley.github.io/se_project_spots/index.html)
 
 **Video**
 
@@ -15,12 +15,7 @@ https://nathanieldaley.github.io/se_project_spots/
 
 **Images**
 
-1. Photo by Kassandre Pedro from Pexels: https://www.pexels.com/photo/snow-covered-mountain-view-through-the-window-8639743/
-2. Photo by Céline from Pexels: https://www.pexels.com/photo/a-restaurant-with-a-white-awning-and-green-awning-16177539/
-3. Photo by Tuba Nur Dogan from Pexels: https://www.pexels.com/photo/people-dining-in-front-of-a-restaurant-18964272/
-4. Photo by Maurice Laschet from Pexels: https://www.pexels.com/photo/suspension-bridge-in-a-forest-18882456/
-5. Photo by Van Anh Nguyen from Pexels: https://www.pexels.com/photo/interior-of-empty-corridor-18981695/
-6. Photo by Moritz Feldmann from Pexels: https://www.pexels.com/photo/rustic-shack-in-winter-18812772/
+- [Images taken from Unsplash](https://unsplash.com/)
 
 ## Project features
 
@@ -36,3 +31,5 @@ https://nathanieldaley.github.io/se_project_spots/
 
 - Add more media queries
 - Fix image previews shrinking slightly at certain screen sizes
+- Add Saving and Deleting animations
+- Fix last image appearing briefly in image modal after clicking on a different image
