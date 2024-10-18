@@ -1,4 +1,5 @@
 import "./index.css";
+import { handleSubmit } from "../scripts/helpers.js";
 import {
   enableValidation,
   settings as validationConfig,
@@ -10,10 +11,7 @@ import Api from "../utils/Api.js";
 
 const cardLikedCSSClass = "card__like-btn_liked";
 const modalLikedCSSClass = "modal_opened";
-const savingSaveButtonText = "Saving...";
-const defaultSaveButtonText = "Save";
 const deletingDeleteButtonText = "Deleting...";
-const defaultDeleteButtonText = "Delete";
 
 // Api handles all fetch requests to the server
 const api = new Api({
@@ -37,8 +35,6 @@ const editProfileAvatarButton = document.querySelector(".profile__avatar-btn");
 //Edit Profile Modal & Elements
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileModalForm = document.forms["edit-profile-form"];
-const editProfileSubmitButton =
-  editProfileModalForm.querySelector(".modal__submit-btn");
 const editProfileModalNameInput = editProfileModal.querySelector(
   ".modal__input#name-input"
 );
@@ -51,8 +47,6 @@ const editProfileAvatarModal = document.querySelector(
   "#edit-profile-avatar-modal"
 );
 const editProfileAvatarModalForm = document.forms["edit-profile-avatar-form"];
-const editProfileAvatarSubmitButton =
-  editProfileAvatarModalForm.querySelector(".modal__submit-btn");
 const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
   ".modal__input#avatar-link-input"
 );
@@ -60,8 +54,6 @@ const editProfileAvatarModalImageInput = editProfileAvatarModal.querySelector(
 //New Post Modal & Elements
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostModalForm = document.forms["new-post-form"];
-const newPostSubmitButton =
-  newPostModalForm.querySelector(".modal__submit-btn");
 const newPostModalImageLinkInput = newPostModal.querySelector(
   ".modal__input#image-link-input"
 );
@@ -71,8 +63,7 @@ const newPostModalCaptionInput = newPostModal.querySelector(
 
 //Delete card Modal & Elements
 const deleteCardModal = document.querySelector("#delete-modal");
-const deleteCardConfirmButton =
-  deleteCardModal.querySelector(".modal__delete-btn");
+const deleteCardModalForm = document.forms["delete-card-form"];
 const deleteCardCancelButton =
   deleteCardModal.querySelector(".modal__cancel-btn");
 
@@ -186,106 +177,71 @@ function handleDeleteCard(cardElement, data) {
 
 //Form submit handlers
 function handleEditProfileSubmit(evt) {
-  evt.preventDefault();
+  function makeRequest() {
+    // `return` lets us use a promise chain `then, catch, finally`
+    return api
+      .editUserInfo({
+        name: editProfileModalNameInput.value,
+        about: editProfileModalDescriptionInput.value,
+      })
+      .then((data) => {
+        profileNameLabel.textContent = data.name;
+        profileDescriptionParagraph.textContent = data.about;
+        closeModal(editProfileModal);
+      });
+  }
 
-  editProfileSubmitButton.textContent = savingSaveButtonText;
-
-  disableButton(editProfileSubmitButton, validationConfig);
-
-  api
-    .editUserInfo({
-      name: editProfileModalNameInput.value,
-      about: editProfileModalDescriptionInput.value,
-    })
-    .then((data) => {
-      profileNameLabel.textContent = data.name;
-      profileDescriptionParagraph.textContent = data.about;
-
-      closeModal(editProfileModal);
-    })
-    .catch((error) => {
-      console.error(error);
-      enableButton(editProfileSubmitButton, validationConfig);
-    })
-    .finally(() => {
-      editProfileSubmitButton.textContent = defaultSaveButtonText;
-    });
+  handleSubmit(makeRequest, evt);
 }
 
 function handleEditProfileAvatarSubmit(evt) {
-  evt.preventDefault();
+  function makeRequest() {
+    // `return` lets us use a promise chain `then, catch, finally`
+    return api
+      .editUserAvatar({ avatar: editProfileAvatarModalImageInput.value })
+      .then((data) => {
+        profileAvatar.src = data.avatar;
 
-  editProfileAvatarSubmitButton.textContent = savingSaveButtonText;
+        evt.target.reset();
 
-  disableButton(editProfileAvatarSubmitButton, validationConfig);
+        closeModal(editProfileAvatarModal);
+      });
+  }
 
-  api
-    .editUserAvatar({ avatar: editProfileAvatarModalImageInput.value })
-    .then((data) => {
-      profileAvatar.src = data.avatar;
-
-      evt.target.reset();
-
-      closeModal(editProfileAvatarModal);
-    })
-    .catch((error) => {
-      console.error(error);
-      enableButton(editProfileAvatarSubmitButton, validationConfig);
-    })
-    .finally(() => {
-      editProfileAvatarSubmitButton.textContent = defaultSaveButtonText;
-    });
+  handleSubmit(makeRequest, evt);
 }
 
 function handleNewPostSubmit(evt) {
-  evt.preventDefault();
+  function makeRequest() {
+    // `return` lets us use a promise chain `then, catch, finally`
+    return api
+      .addCard({
+        name: newPostModalCaptionInput.value,
+        link: newPostModalImageLinkInput.value,
+      })
+      .then((data) => {
+        addCardToCardList(data);
 
-  newPostSubmitButton.textContent = savingSaveButtonText;
+        evt.target.reset();
 
-  disableButton(newPostSubmitButton, validationConfig);
+        closeModal(newPostModal);
+      });
+  }
 
-  api
-    .addCard({
-      name: newPostModalCaptionInput.value,
-      link: newPostModalImageLinkInput.value,
-    })
-    .then((data) => {
-      addCardToCardList(data);
-
-      evt.target.reset();
-
-      closeModal(newPostModal);
-    })
-    .catch((error) => {
-      console.error(error);
-      enableButton(newPostSubmitButton, validationConfig);
-    })
-    .finally(() => {
-      newPostSubmitButton.textContent = defaultSaveButtonText;
-    });
+  handleSubmit(makeRequest, evt);
 }
 
 function handleDeleteCardSubmit(evt) {
-  evt.preventDefault();
-
-  deleteCardConfirmButton.textContent = deletingDeleteButtonText;
-
-  disableButton(deleteCardConfirmButton, validationConfig);
-
-  api
-    .deleteCard({ id: selectedCardId })
-    .then(() => {
+  function makeRequest() {
+    // `return` lets us use a promise chain `then, catch, finally`
+    return api.deleteCard({ id: selectedCardId }).then(() => {
       selectedCard.remove();
 
       closeModal(deleteCardModal);
-    })
-    .catch((error) => {
-      console.error(error);
-      enableButton(deleteCardConfirmButton, validationConfig);
-    })
-    .finally(() => {
-      deleteCardConfirmButton.textContent = defaultDeleteButtonText;
     });
+  }
+
+  handleSubmit(makeRequest, evt, deletingDeleteButtonText);
 }
 
 function handleDeleteCardCancel(evt) {
@@ -327,7 +283,7 @@ newPostButton.addEventListener("click", () => {
 newPostModalForm.addEventListener("submit", handleNewPostSubmit);
 
 // Delete Card Modal event listeners
-deleteCardConfirmButton.addEventListener("click", handleDeleteCardSubmit);
+deleteCardModalForm.addEventListener("submit", handleDeleteCardSubmit);
 deleteCardCancelButton.addEventListener("click", handleDeleteCardCancel);
 
 //Close event listener for each close modal button
