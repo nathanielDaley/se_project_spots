@@ -24,7 +24,6 @@ export function handleSubmit(
   finallyEnableButton = false
 ) {
   evt.preventDefault();
-  debugger;
   //get the button that submitted the form
   const submitButton = evt.submitter;
 

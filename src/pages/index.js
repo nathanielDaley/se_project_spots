@@ -202,8 +202,6 @@ function handleEditProfileAvatarSubmit(evt) {
       .then((data) => {
         profileAvatar.src = data.avatar;
 
-        evt.target.reset();
-
         closeModal(editProfileAvatarModal);
       });
   }
@@ -221,8 +219,6 @@ function handleNewPostSubmit(evt) {
       })
       .then((data) => {
         addCardToCardList(data);
-
-        evt.target.reset();
 
         closeModal(newPostModal);
       });
