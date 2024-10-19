@@ -194,9 +194,11 @@
   border-radius: 8px;
   border: none;
   padding: 0;
+  color: black;
 }
 
 .modal__delete-btn:hover {
+  opacity: 1;
   cursor: pointer;
   background-color: rgba(255, 51, 51, 1);
 }
