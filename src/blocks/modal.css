@@ -290,4 +290,14 @@
   .modal__submit-btn {
     width: 100%;
   }
+
+  .modal__delete-btn {
+    width: 130px;
+    padding: 0;
+  }
+
+  .modal__cancel-btn {
+    width: 130px;
+    padding: 0;
+  }
 }
